@@ -8,10 +8,11 @@ namespace DataStructuresAndAlgorithms
 {
     public interface IStringSolutions
     {
-       bool IsUnique(string input);
-       bool IsUniqueWithSortedString(string input);
-       bool CheckPermutation(string firstString, string secondString);
-       bool CheckPermutationWithSortedStrings(string firstString, string secondString);
-       bool CheckPermutationWithTwoIdenticalCharacterCount(string firstString, string secondString);
+        bool IsUnique(string input);
+        bool IsUniqueWithSortedString(string input);
+        bool CheckPermutation(string firstString, string secondString);
+        bool CheckPermutationWithSortedStrings(string firstString, string secondString);
+        bool CheckPermutationWithTwoIdenticalCharacterCount(string firstString, string secondString);
+        string URLifyString(string inputString, int stringLength);
     }
 }

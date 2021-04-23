@@ -94,7 +94,6 @@ namespace DataStructuresAndAlgorithmsTest
             Assert.True(result);
         }
 
-        [Theory]
         [InlineData("abcd", "bace")]
         public void CheckPermutationWithSortedStrings_With2InvalidStrings_ReturnFalse(string firstString, string secondString)
         {
@@ -128,6 +127,17 @@ namespace DataStructuresAndAlgorithmsTest
             var result = _stringSolutions.CheckPermutationWithTwoIdenticalCharacterCount(firstString, secondString);
 
             Assert.False(result);
+        }
+
+        [Theory]
+        [InlineData("Mr John Smith   ", 15)]
+        public void URLifyString_ValidString_ReturnExpectedResult(string inputString, int length)
+        {
+            string expectedResult = "Mr%20John%20Smith";
+
+            string actualResult = _stringSolutions.URLifyString(inputString, length);
+
+            Assert.Equal(expectedResult, actualResult);
         }
 
     }
