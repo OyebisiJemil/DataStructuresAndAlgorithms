@@ -94,6 +94,32 @@ namespace DataStructuresAndAlgorithms
             return true;
         }
 
+        /// <summary>
+        /// Time complexity for this is O(n), because we loop through the array visit each character once
+        /// </summary>
+        /// <param name="inputString"></param>
+        /// <param name="stringLength"></param>
+        /// <returns></returns>
+        public string URLifyString(string inputString, int stringLength)
+        {
+            //Jemil oyebisi gg
+            //j e m i l  o y
+            char[] charArray = inputString.Trim().ToCharArray();
+            StringBuilder stringOutput = new StringBuilder();
+            for(int counter = 0; counter < stringLength; counter++)
+            {
+                if(charArray[counter] == ' ')
+                {
+                    stringOutput.Append("%20");
+                }
+                else
+                {
+                    stringOutput.Append(charArray[counter]);
+                }
+            }
+            return stringOutput.ToString();
+        }
+
         bool CharacterFound(bool[] characterSet, int value)
         {
             return characterSet[value];
