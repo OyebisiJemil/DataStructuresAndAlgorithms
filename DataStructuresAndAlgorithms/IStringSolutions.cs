@@ -14,5 +14,6 @@ namespace DataStructuresAndAlgorithms
         bool CheckPermutationWithSortedStrings(string firstString, string secondString);
         bool CheckPermutationWithTwoIdenticalCharacterCount(string firstString, string secondString);
         string URLifyString(string inputString, int stringLength);
+        bool IsPalindromPermutation(string inputString);
     }
 }

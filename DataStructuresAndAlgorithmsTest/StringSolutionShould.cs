@@ -140,5 +140,22 @@ namespace DataStructuresAndAlgorithmsTest
             Assert.Equal(expectedResult, actualResult);
         }
 
+        [Theory]
+        [InlineData("aab")]
+        public void IsPalindromPermutation_WithCorrectInput_ReturnTrue(string stringInput)
+        {
+            var result = _stringSolutions.IsPalindromPermutation(stringInput);
+
+            Assert.True(result);
+        }
+
+        [Theory]
+        [InlineData("aacb")]
+        public void IsPalindromPermutation_WithIncorrectInput_ReturnFalse(string stringInput)
+        {
+            var result = _stringSolutions.IsPalindromPermutation(stringInput);
+
+            Assert.False(result);
+        }
     }
 }

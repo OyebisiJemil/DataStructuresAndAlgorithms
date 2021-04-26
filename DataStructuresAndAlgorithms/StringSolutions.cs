@@ -54,6 +54,20 @@ namespace DataStructuresAndAlgorithms
             return true;
         }
 
+        public bool IsPalindromPermutation(string inputString)
+        {
+            int[] charCounts = new int[128];
+            for(int i = 0; i<inputString.Length; i++)
+            {
+                int asciiValue = inputString[i];
+                charCounts[asciiValue]++;
+            }
+
+            int characterOccurence = GetOddCount(charCounts);
+
+            return characterOccurence <= 1;
+        }
+
         /// <summary>
         /// time complexity for this algorithm is O(n)
         /// but we can as well say, it is O(1) since the for loop will never iterate through more than 128 characters
@@ -78,7 +92,6 @@ namespace DataStructuresAndAlgorithms
             }
             return true;
         }
-
 
         /// <summary>
         /// Here we can sort the string to get O(n log n) time and then linerly check the string 
@@ -120,12 +133,12 @@ namespace DataStructuresAndAlgorithms
             return stringOutput.ToString();
         }
 
-        bool CharacterFound(bool[] characterSet, int value)
+        private bool CharacterFound(bool[] characterSet, int value)
         {
             return characterSet[value];
         }
 
-        int GetSumOfStringCharacters(string input)
+        private int GetSumOfStringCharacters(string input)
         {
             int sum = 0;
             for(int counter = 0; counter<input.Length; counter++)
@@ -135,11 +148,20 @@ namespace DataStructuresAndAlgorithms
             return sum;
         }
 
-        string SortArrayOfString(string stringInput)
+        private string SortArrayOfString(string stringInput)
         {
             char[] content = stringInput.ToCharArray();
             Array.Sort(content);
             return content.ToString();
+        }
+        private int GetOddCount(int[] charCounts)
+        {
+            int oddCharacterOccurence = 0;
+            for (int i = 0; i < 128; i++)
+            {
+                oddCharacterOccurence += charCounts[i] % 2;
+            }
+            return oddCharacterOccurence;
         }
     }
 }
