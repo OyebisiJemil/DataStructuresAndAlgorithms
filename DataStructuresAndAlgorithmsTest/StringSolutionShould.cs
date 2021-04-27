@@ -130,7 +130,7 @@ namespace DataStructuresAndAlgorithmsTest
         }
 
         [Theory]
-        [InlineData("Mr John Smith   ", 15)]
+        [InlineData("Mr John Smith   ", 13)]
         public void URLifyString_ValidString_ReturnExpectedResult(string inputString, int length)
         {
             string expectedResult = "Mr%20John%20Smith";
@@ -154,6 +154,41 @@ namespace DataStructuresAndAlgorithmsTest
         public void IsPalindromPermutation_WithIncorrectInput_ReturnFalse(string stringInput)
         {
             var result = _stringSolutions.IsPalindromPermutation(stringInput);
+
+            Assert.False(result);
+        }
+
+        [Theory]
+        [InlineData("pale","pale")]
+        public void OneEditAway_WithEqualStringWithoutTheForReplacement_ReturnsFalse(string s1, string s2)
+        {
+            var result = _stringSolutions.OneEditAway(s1, s2);
+
+            Assert.False(result);
+        }
+
+        [Theory]
+        [InlineData("pale", "pala")]
+        public void OneEditAway_WithEqualStringWithOneReplacement_ReturnsTrue(string s1, string s2)
+        {
+            var result = _stringSolutions.OneEditAway(s1, s2);
+
+            Assert.True(result);
+        }
+        [Theory]
+        [InlineData("pale", "pal")]
+        public void OneEditAway_WithOneInsertionAway_ReturnsTrue(string s1, string s2)
+        {
+            var result = _stringSolutions.OneEditAway(s1, s2);
+
+            Assert.True(result);
+        }
+
+        [Theory]
+        [InlineData("pale", "ble")]
+        public void OneEditAway_WithMoreThanOneEditAway_ReturnsFalse(string s1, string s2)
+        {
+            var result = _stringSolutions.OneEditAway(s1, s2);
 
             Assert.False(result);
         }

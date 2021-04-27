@@ -163,5 +163,63 @@ namespace DataStructuresAndAlgorithms
             }
             return oddCharacterOccurence;
         }
+
+        public bool OneEditAway(string s1, string s2)
+        {
+            if(s1.Length == s2.Length)
+            {
+                return EditReplacement(s1, s2);
+            }
+            else if(s1.Length +1 == s2.Length)
+            {
+                return EditInsert(s1, s2);
+            }
+            else if(s1.Length - 1 == s2.Length)
+            {
+                return EditInsert(s1, s2);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool EditReplacement(string s1, string s2)
+        {
+            for(int i = 0; i<s1.Length; i++)
+            {
+                if(s1[i] != s2[i])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool EditInsert(string s1, string s2)
+        {
+            int s1_pointer = 0;
+            int s2_pointer = 0;
+
+            while (s2_pointer < s2.Length && s1_pointer<s1.Length)
+            {
+                var v2 = s2[s2_pointer];
+                var v1 = s1[s1_pointer];
+                if (v2 != v1)
+                {
+                    if(s1_pointer != s2_pointer)
+                    {
+                        return false;
+                    }
+                    s2_pointer++;
+                }
+                else
+                {
+                    s1_pointer++;
+                    s2_pointer++;
+                }
+            }
+            return true;
+        }
     }
 }
