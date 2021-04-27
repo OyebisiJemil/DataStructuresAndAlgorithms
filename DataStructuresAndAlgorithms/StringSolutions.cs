@@ -221,5 +221,25 @@ namespace DataStructuresAndAlgorithms
             }
             return true;
         }
+
+        public string StringCompression(string stringInput)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            int characterCount = 0;
+
+            for (int i = 0; i<stringInput.Length; i++)
+            {
+                characterCount++;
+
+                if(i+1 >= stringInput.Length || stringInput[i] != stringInput[i + 1])
+                {
+                    string value = stringInput[i] + characterCount.ToString();
+                    stringBuilder.Append(value);
+                    characterCount = 0;
+                }
+
+            }
+            return stringBuilder.Length >= stringInput.Length ? stringInput : stringBuilder.ToString();
+        }
     }
 }
