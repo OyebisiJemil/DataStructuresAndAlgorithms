@@ -16,5 +16,6 @@ namespace DataStructuresAndAlgorithms
         string URLifyString(string inputString, int stringLength);
         bool IsPalindromPermutation(string inputString);
         bool OneEditAway(string s1, string s2);
+        string StringCompression(string stringInput);
     }
 }

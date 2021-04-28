@@ -192,5 +192,16 @@ namespace DataStructuresAndAlgorithmsTest
 
             Assert.False(result);
         }
+
+        [Theory]
+        [InlineData("aabcccccaaa")]
+        public void StringCompression_WithValidString_ReturnExpectedResult(string stringInput)
+        {
+            string expectedResult = "a2b1c5a3";
+
+            var actualResult = _stringSolutions.StringCompression(stringInput);
+
+            Assert.Equal(expectedResult, actualResult);
+        }
     }
 }
