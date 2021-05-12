@@ -43,7 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ILinkedListSolutions.cs" />
+    <Compile Include="LinkedListSolutions.cs" />
     <Compile Include="IStringSolutions.cs" />
+    <Compile Include="MyList.cs" />
+    <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringSolutions.cs" />
