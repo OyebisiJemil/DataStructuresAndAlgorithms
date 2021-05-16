@@ -117,5 +117,26 @@ namespace DataStructuresAndAlgorithms
 
             return follower;
         }
+
+
+        /// <summary>
+        /// Given a node, this algorithm deletes the node in the middle without affecting the head and the last node
+        /// the time complexity for this is O(1)
+        /// No head node was given, only the node to be removed was given.
+        /// Copying the next node over to the current node would do the job
+        /// </summary>
+        /// <param name="nodeToDelete"></param>
+        /// <returns></returns>
+        public Node DeleteMiddleNode(Node nodeToDelete)
+        {
+            if (nodeToDelete == null || nodeToDelete.next == null)
+            {
+                return null;
+            }
+
+            nodeToDelete.value = nodeToDelete.next.value;
+            nodeToDelete.next = nodeToDelete.next.next;
+            return nodeToDelete;
+        }
     }
 }

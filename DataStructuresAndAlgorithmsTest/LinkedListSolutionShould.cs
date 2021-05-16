@@ -82,5 +82,18 @@ namespace DataStructuresAndAlgorithmsTest
 
             Assert.Equal(expectedResult, actualResult.value);
         }
+
+        [Fact]
+        public void DeleteMiddleNode_WithHeadNode_RemovesTheMiddleNode()
+        {
+            Node headNode = new Node(10);
+            headNode.next = new Node(3);
+            headNode.next.next = new Node(5);
+            headNode.next.next.next = new Node(2);
+
+            var actualResult = _linkedListSolutions.DeleteMiddleNode(headNode.next);
+
+            Assert.Equal(5, actualResult.value);
+        }
     }
 }
