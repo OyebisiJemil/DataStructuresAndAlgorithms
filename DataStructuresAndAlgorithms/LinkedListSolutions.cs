@@ -94,5 +94,28 @@ namespace DataStructuresAndAlgorithms
             }
             return head;
         }
+
+        public Node ReturnKthElement(Node head, int k)
+        {
+            Node current = head;
+            Node follower = head;
+
+            for (int i = 1; i < k; i++)
+            {
+                if(current == null)
+                {
+                    return null;
+                }
+                current = current.next;
+            }
+
+            while (current.next != null)
+            {
+                current = current.next;
+                follower = follower.next;
+            }
+
+            return follower;
+        }
     }
 }

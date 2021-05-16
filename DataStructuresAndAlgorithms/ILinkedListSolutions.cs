@@ -11,5 +11,6 @@ namespace DataStructuresAndAlgorithms
         Node RemoveDuplicateFromSortedList(Node head);
         Node RemoveDuplicateFromUnsortedList(Node head);
         Node RemoveDuplicateFromUnsortedWithHashSet(Node head);
+        Node ReturnKthElement(Node head, int k);
     }
 }

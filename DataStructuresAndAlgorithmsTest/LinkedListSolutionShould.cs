@@ -63,5 +63,24 @@ namespace DataStructuresAndAlgorithmsTest
 
             Assert.Equal(headNode, actualResult);
         }
+
+        [Fact]
+        public void ReturnKthElement_WithHeadNode_ReturnsResult()
+        {
+            Node headNode = new Node(10);
+            headNode.next = new Node(3);
+            headNode.next.next = new Node(3);
+            headNode.next.next.next = new Node(2);
+            headNode.next.next.next.next = new Node(4);
+            headNode.next.next.next.next.next = new Node(11);
+            headNode.next.next.next.next.next.next = new Node(6);
+            headNode.next.next.next.next.next.next.next = new Node(5);
+
+            var expectedResult = 6;
+
+            var actualResult = _linkedListSolutions.ReturnKthElement(headNode,2);
+
+            Assert.Equal(expectedResult, actualResult.value);
+        }
     }
 }
