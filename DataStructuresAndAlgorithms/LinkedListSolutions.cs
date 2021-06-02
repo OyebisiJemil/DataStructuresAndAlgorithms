@@ -138,5 +138,50 @@ namespace DataStructuresAndAlgorithms
             nodeToDelete.next = nodeToDelete.next.next;
             return nodeToDelete;
         }
+
+        public Node PartitionLinkedList(Node headNode, int x)
+        {
+            Node LeftListHeadNode = null;
+            Node LeftListTailNode = null;
+            Node RightListHeadNode = null;
+            Node RightListTailNode = null;
+
+            while(headNode != null)
+            {
+                Node next = headNode.next;
+                headNode.next = null;
+                if(headNode.value < x)
+                {
+                    if(LeftListHeadNode == null)
+                    {
+                        LeftListHeadNode = headNode;
+                        LeftListTailNode = LeftListHeadNode;
+                    }
+                    else
+                    {
+                        LeftListTailNode.next = headNode;
+                        LeftListTailNode = headNode;
+                    }
+                }
+                else
+                {
+                    if(RightListHeadNode == null)
+                    {
+                        RightListHeadNode = headNode;
+                        RightListTailNode = RightListHeadNode;
+                    }
+                    else
+                    {
+                        RightListTailNode.next = headNode;
+                        RightListTailNode = headNode;
+                    }
+                }
+                headNode = next;
+            }
+
+            LeftListTailNode.next = RightListHeadNode;
+
+            return LeftListHeadNode;
+        }
     }
 }

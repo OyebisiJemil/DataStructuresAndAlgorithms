@@ -13,5 +13,6 @@ namespace DataStructuresAndAlgorithms
         Node RemoveDuplicateFromUnsortedWithHashSet(Node head);
         Node ReturnKthElement(Node head, int k);
         Node DeleteMiddleNode(Node nodeToDelete);
+        Node PartitionLinkedList(Node headNode, int x);
     }
 }

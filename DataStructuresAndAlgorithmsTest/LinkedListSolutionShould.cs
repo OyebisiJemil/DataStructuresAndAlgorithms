@@ -95,5 +95,23 @@ namespace DataStructuresAndAlgorithmsTest
 
             Assert.Equal(5, actualResult.value);
         }
+
+        [Fact]
+        public void PartitionLinkedList_WithHeadNodeAndXGiven_ReturnsHeadNode()
+        {
+            Node headNode = new Node(3);
+            headNode.next = new Node(5);
+            headNode.next.next = new Node(8);
+            headNode.next.next.next = new Node(5);
+            headNode.next.next.next.next = new Node(10);
+            headNode.next.next.next.next.next = new Node(2);
+            headNode.next.next.next.next.next.next = new Node(1);
+
+
+
+            var actualResult = _linkedListSolutions.PartitionLinkedList(headNode, 5);
+
+            Assert.Equal(headNode, actualResult);
+        }
     }
 }
