@@ -203,5 +203,80 @@ namespace DataStructuresAndAlgorithmsTest
 
             Assert.Equal(expectedResult, actualResult);
         }
+
+        [Theory]
+        [InlineData("ab#z", "az#z")]
+        public void BackspaceCompare_WithValidTwoStrings_ReturnsTrue(string s, string t)
+        {
+            bool actualResult = _stringSolutions.BackspaceCompare(s, t);
+
+            Assert.True(actualResult);
+        }
+
+        [Theory]
+        [InlineData("bxj##tw", "bxj###tw")]
+        public void BackspaceCompare_WithInValidTwoStrings_ReturnFalse(string s, string t)
+        {
+            bool actualResult = _stringSolutions.BackspaceCompare(s, t);
+
+            Assert.False(actualResult);
+        }
+
+        [Theory]
+        [InlineData("ab#z", "az#z")]
+
+        public void BackspaceCompareOptimized_WithValidTwoStrings_ReturnsTrue(string s, string t)
+        {
+            bool actualResult = _stringSolutions.BackspaceCompareOptimized(s, t);
+
+            Assert.True(actualResult);
+        }
+
+        [Theory]
+        [InlineData("abcbdca")]
+        public void LongestSubstring_ValidInput_ReturnResult(string input)
+        {
+            int expectedResult = 4;
+            int actualResult = _stringSolutions.LongestSubstring(input);
+
+            Assert.Equal(expectedResult, actualResult);
+        }
+        //"abcabcbb"
+        [Theory]
+        [InlineData("aabaab!bb")]
+        public void LongestSubstringOptimized_ValidInput_ReturnResult(string input)
+        {
+            int expectedResult = 3;
+            int actualResult = _stringSolutions.LongestSubstringOptimized(input);
+
+            Assert.Equal(expectedResult, actualResult);
+        }
+
+        [Theory]
+        [InlineData("a.")]
+        public void ValidPalindrom_ValidInputString_ReturnsTrue(string s)
+        {
+            bool actualResult = _stringSolutions.ValidPalindrom(s);
+
+            Assert.True(actualResult);
+        }
+
+        [Theory]
+        [InlineData("ab")]
+        public void ValidPalindromApproach2_ValidInputString_ReturnsTrue(string s)
+        {
+            bool actualResult = _stringSolutions.ValidPalindromApproach2(s);
+
+            Assert.True(actualResult);
+        }
+
+        [Theory]
+        [InlineData("abcdefdba")]
+        public void AlmostPalindrome_ValidInput_ReturnsTrue(string s)
+        {
+             var actualResult = _stringSolutions.AlmostPalindrome(s);
+
+            Assert.True(actualResult);
+        }
     }
 }

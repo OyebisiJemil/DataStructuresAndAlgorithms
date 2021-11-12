@@ -14,5 +14,7 @@ namespace DataStructuresAndAlgorithms
         Node ReturnKthElement(Node head, int k);
         Node DeleteMiddleNode(Node nodeToDelete);
         Node PartitionLinkedList(Node headNode, int x);
+        Node ReverseLinkedList(Node head);
+        Node ReverseBetween(Node head, int left, int right);
     }
 }

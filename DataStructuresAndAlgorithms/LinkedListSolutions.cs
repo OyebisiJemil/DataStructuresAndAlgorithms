@@ -183,5 +183,53 @@ namespace DataStructuresAndAlgorithms
 
             return LeftListHeadNode;
         }
+
+        public Node ReverseLinkedList(Node head)
+        {
+            Node currentNode = head;
+            Node prev = null;
+
+            while(currentNode != null)
+            {
+                Node next = currentNode.next;
+                currentNode.next = prev;
+                prev = currentNode;
+                currentNode = next;
+            }
+
+            return prev;
+        }
+       public Node ReverseBetween(Node head, int left, int right)
+        {
+            Node currentNode = head;
+            int position = 1;
+            Node startNode = head;
+
+
+            while (position < left)
+            {
+                startNode = currentNode;
+                currentNode = currentNode.next;
+                position++;
+            }
+            Node tailNode = currentNode;
+            Node newList = null;
+            while (position >= left && position <= right)
+            {
+                Node next = currentNode.next;
+                currentNode.next = newList;
+                newList = currentNode;
+                currentNode = next;
+                position++;
+            }
+
+            startNode.next = newList;
+            tailNode.next = currentNode;
+
+            if (left > 1)
+                return head;
+            else
+                return newList;
+        }
     }
 }
