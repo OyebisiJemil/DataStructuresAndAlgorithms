@@ -95,5 +95,52 @@ namespace DataStructuresAndAlgorithmsTest
 
             Assert.Equal(5, actualResult.value);
         }
+
+        [Fact]
+        public void PartitionLinkedList_WithHeadNodeAndXGiven_ReturnsHeadNode()
+        {
+            Node headNode = new Node(3);
+            headNode.next = new Node(5);
+            headNode.next.next = new Node(8);
+            headNode.next.next.next = new Node(5);
+            headNode.next.next.next.next = new Node(10);
+            headNode.next.next.next.next.next = new Node(2);
+            headNode.next.next.next.next.next.next = new Node(1);
+
+
+
+            var actualResult = _linkedListSolutions.PartitionLinkedList(headNode, 5);
+
+            Assert.Equal(headNode, actualResult);
+        }
+        [Fact]
+        public void ReverseLinkedList_WithHeadNode_Works()
+        {
+            Node headNode = new Node(1);
+            headNode.next = new Node(2);
+            headNode.next.next = new Node(3);
+            headNode.next.next.next = new Node(4);
+            headNode.next.next.next.next = new Node(5);
+
+            var actualResult = _linkedListSolutions.ReverseLinkedList(headNode);
+
+            Assert.Equal(5, actualResult.value);
+        }
+
+        [Fact]
+        public void ReverseBetween_WithHeadNode_Works()
+        {
+            Node headNode = new Node(1);
+            headNode.next = new Node(2);
+            headNode.next.next = new Node(3);
+            headNode.next.next.next = new Node(4);
+            headNode.next.next.next.next = new Node(5);
+            headNode.next.next.next.next.next = new Node(6);
+            headNode.next.next.next.next.next.next = new Node(7);
+
+            var actualResult = _linkedListSolutions.ReverseBetween(headNode, 1, 1);
+
+            Assert.Equal(1, actualResult.value);
+        }
     }
 }

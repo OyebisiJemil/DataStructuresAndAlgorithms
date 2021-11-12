@@ -138,5 +138,98 @@ namespace DataStructuresAndAlgorithms
             nodeToDelete.next = nodeToDelete.next.next;
             return nodeToDelete;
         }
+
+        public Node PartitionLinkedList(Node headNode, int x)
+        {
+            Node LeftListHeadNode = null;
+            Node LeftListTailNode = null;
+            Node RightListHeadNode = null;
+            Node RightListTailNode = null;
+
+            while(headNode != null)
+            {
+                Node next = headNode.next;
+                headNode.next = null;
+                if(headNode.value < x)
+                {
+                    if(LeftListHeadNode == null)
+                    {
+                        LeftListHeadNode = headNode;
+                        LeftListTailNode = LeftListHeadNode;
+                    }
+                    else
+                    {
+                        LeftListTailNode.next = headNode;
+                        LeftListTailNode = headNode;
+                    }
+                }
+                else
+                {
+                    if(RightListHeadNode == null)
+                    {
+                        RightListHeadNode = headNode;
+                        RightListTailNode = RightListHeadNode;
+                    }
+                    else
+                    {
+                        RightListTailNode.next = headNode;
+                        RightListTailNode = headNode;
+                    }
+                }
+                headNode = next;
+            }
+
+            LeftListTailNode.next = RightListHeadNode;
+
+            return LeftListHeadNode;
+        }
+
+        public Node ReverseLinkedList(Node head)
+        {
+            Node currentNode = head;
+            Node prev = null;
+
+            while(currentNode != null)
+            {
+                Node next = currentNode.next;
+                currentNode.next = prev;
+                prev = currentNode;
+                currentNode = next;
+            }
+
+            return prev;
+        }
+       public Node ReverseBetween(Node head, int left, int right)
+        {
+            Node currentNode = head;
+            int position = 1;
+            Node startNode = head;
+
+
+            while (position < left)
+            {
+                startNode = currentNode;
+                currentNode = currentNode.next;
+                position++;
+            }
+            Node tailNode = currentNode;
+            Node newList = null;
+            while (position >= left && position <= right)
+            {
+                Node next = currentNode.next;
+                currentNode.next = newList;
+                newList = currentNode;
+                currentNode = next;
+                position++;
+            }
+
+            startNode.next = newList;
+            tailNode.next = currentNode;
+
+            if (left > 1)
+                return head;
+            else
+                return newList;
+        }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DataStructuresAndAlgorithms
@@ -241,5 +243,247 @@ namespace DataStructuresAndAlgorithms
             }
             return stringBuilder.Length >= stringInput.Length ? stringInput : stringBuilder.ToString();
         }
+
+        public bool BackspaceCompare(string s, string t)
+        {
+            bool result = true;
+            Stack<char> sStack = MasearchString(s);
+            Stack<char> tStack = MasearchString(t);
+
+            if (sStack.Count != tStack.Count)
+                return false;
+
+            while(sStack.Count != 0)
+            {
+                if(sStack.Peek() == tStack.Peek())
+                {
+                    sStack.Pop();
+                    tStack.Pop();
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return result;
+        }
+
+        private Stack<char> MasearchString(string s)
+        {
+            Stack<char> stack = new Stack<char>();
+            for (int pointer = 0; pointer < s.Length; pointer++)
+            {
+                char value = s[pointer];
+                if (value != '#')
+                {
+                    stack.Push(value);
+                }
+                else if (stack.Count != 0)
+                {
+                    stack.Pop();
+                }
+            }
+
+            return stack;
+        }
+
+        public bool BackspaceCompareOptimized(string s, string t)
+        {
+            int p = s.Length - 1, q = t.Length - 1;
+
+            while(p >= 0 || q >= 0)
+            {
+                if(s[p] != '#' || t[q] != '#')
+                {
+                    if(s[p] != t[q])
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        p--;
+                        q--;
+                    }
+                }
+                else
+                {
+                    if(s[p] == '#')
+                    {
+                        int backspace = 2;
+                        while(backspace > 0)
+                        {
+                            p--;
+                            backspace--;
+                        }
+                    }
+                    if (t[q] == '#')
+                    {
+                        int backspace = 2;
+                        while (backspace > 0)
+                        {
+                            q--;
+                            backspace--;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
+        public int LongestSubstring(string input)
+        {
+            if(input.Length <= 1)
+            {
+                return input.Length;
+            }
+            int longestLength = 0;
+
+            for (int pointer = 0; pointer <input.Length; pointer++)
+            {
+                HashSet<char> lookup = new HashSet<char>();
+                int currentLength = 0;
+                for (int qpointer = pointer; qpointer<input.Length; qpointer++)
+                {
+                    if (!lookup.Contains(input[qpointer]))
+                    {
+                        lookup.Add(input[qpointer]);
+                        currentLength++;
+                        longestLength = Math.Max(longestLength, currentLength);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+
+            return longestLength;
+        }
+
+        public int LongestSubstringOptimized(string input)
+        {
+            if (input.Length <= 1)
+            {
+                return input.Length;
+            }
+
+            int longestLength = 0;
+            int leftPointer = 0;
+            int inputLength = input.Length;
+            Hashtable lookup = new Hashtable();
+
+            for(int rightPointer = 0; rightPointer<inputLength; rightPointer++)
+            {
+                var currentCharacter = input[rightPointer];
+
+                var previousSeenCharacter = lookup.ContainsKey(currentCharacter) ? (int)lookup[currentCharacter]: ' ';
+                if(previousSeenCharacter != ' ')
+                {
+                    if (previousSeenCharacter >= leftPointer)
+                    {
+                        leftPointer = previousSeenCharacter + 1;
+                    }
+                    lookup[currentCharacter] = rightPointer;
+                }
+                else
+                {
+                    lookup[currentCharacter] = rightPointer;
+                }
+                longestLength = Math.Max(longestLength, rightPointer - leftPointer + 1);
+            }
+            return longestLength;
+        }
+
+        public bool ValidPalindrom(string s)
+        {
+            s = Regex.Replace(s, @"[^0-9a-zA-Z\._]", "").ToLower();
+            s = RemoveSpecialChars(s);
+            int average = s.Length / 2;
+            int leftPointer = 0;
+            int rightPointer = s.Length-1;
+            bool result = true;
+
+            while(leftPointer < rightPointer)
+            {
+                if(!(s[leftPointer] == s[rightPointer]))
+                {
+                    result = false;
+                    return result;
+                }
+                leftPointer++;
+                rightPointer--;
+            }
+            return result;
+        }
+        public bool ValidPalindromApproach2(string s)
+        {
+            s = Regex.Replace(s, @"[^0-9a-zA-Z\._]", "").ToLower();
+            s = RemoveSpecialChars(s);
+            int average = s.Length / 2;
+            int leftPointer = average;
+            int rightPointer = average;
+            bool result = true;
+
+            while(leftPointer >=0 && rightPointer <= s.Length - 1)
+            {
+                char leftCharacter = s[leftPointer];
+                char rightCharacter = s[rightPointer];
+                if (leftCharacter != rightCharacter)
+                {
+                    return false;
+                }
+                leftPointer--;
+                rightPointer++;
+            }
+            return true;
+        }
+        public bool AlmostPalindrome(string s)
+        {
+            int leftPointer = 0;
+            int rightPointer = s.Length - 1;
+            while(leftPointer < rightPointer)
+            {
+                char leftCharacter = s[leftPointer];
+                char rightCharacter = s[rightPointer];
+
+                if(leftCharacter != rightCharacter)//there is a conflict
+                {
+                    string leftOver = s.Remove(leftPointer, 1);
+                    string rightOver = s.Remove(rightPointer, 1);
+
+                    bool valid1 = ValidPalindrom(leftOver);
+                    bool valid2 = ValidPalindrom(rightOver);
+
+                    if(valid1 || valid2)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                leftPointer++;
+                rightPointer--;
+            }
+            return true;
+        }
+
+        #region Helper Methods
+        public static string RemoveSpecialChars(string str)
+        {
+            // Create  a string array and add the special characters you want to remove
+            string[] chars = new string[] { ",", ".", "/", "!", "@", "#", "$", "%", "^", "&", "*", "'", "\"", ";", "_", "(", ")", ":", "|", "[", "]" };
+            //Iterate the number of times based on the String array length.
+            for (int i = 0; i < chars.Length; i++)
+            {
+                if (str.Contains(chars[i]))
+                {
+                    str = str.Replace(chars[i], "");
+                }
+            }
+            return str;
+        }
+        #endregion
     }
 }
