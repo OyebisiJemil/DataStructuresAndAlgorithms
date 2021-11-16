@@ -20,7 +20,17 @@ namespace DataStructuresAndAlgorithmsTest
         {
             var actualResult = _stackSolutions.ValidParentheses(s);
 
-            Assert.True(actualResult);
+            Assert.False(actualResult);
+        }
+
+        [Theory]
+        [InlineData(("))(("))]
+        public void MinimumBracketToRemove_ValidString_ReturnsTrue(string s)
+        {
+            string expectedResult = "";
+            var actualResult = _stackSolutions.MinimumBracketToRemove(s);
+
+            Assert.Equal(expectedResult, actualResult);
         }
     }
 }

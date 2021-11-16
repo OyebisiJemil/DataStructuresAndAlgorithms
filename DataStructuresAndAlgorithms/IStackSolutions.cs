@@ -9,5 +9,6 @@ namespace DataStructuresAndAlgorithms
     public interface IStackSolutions
     {
         bool ValidParentheses(string s);
+        string MinimumBracketToRemove(string s);
     }
 }
