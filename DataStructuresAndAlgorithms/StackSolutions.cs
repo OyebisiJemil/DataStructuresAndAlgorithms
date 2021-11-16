@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DataStructuresAndAlgorithms
@@ -50,7 +51,39 @@ namespace DataStructuresAndAlgorithms
             return false;
         }
 
-        bool OpenAndClose(char open, char close)
+        public string MinimumBracketToRemove(string s)
+        {
+            char leftBracket = '(';
+            char rightBracket = ')';
+            Stack<int> stack = new Stack<int>();
+            char[] result = s.ToCharArray();
+
+            for(int i = 0; i<result.Length; i++)
+            {
+                if (result[i] == leftBracket)
+                {
+                    stack.Push(i);
+                }
+                else if(result[i] == rightBracket && stack.Count != 0)
+                {
+                    stack.Pop();
+                }
+                else if(result[i] == rightBracket)
+                {
+                    result[i] = ' ';
+                }
+            }
+
+            while(stack.Count != 0)
+            {
+                int index = stack.Pop();
+                result[index] = ' ';
+            }
+            string output = new string(result);
+            return Regex.Replace(output, @"\s+", "");
+        }
+
+        bool OpenAndClose(object open, object close)
         {
             Hashtable hashtable = new Hashtable();
             hashtable.Add('{', '}');
