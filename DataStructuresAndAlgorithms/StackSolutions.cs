@@ -93,5 +93,20 @@ namespace DataStructuresAndAlgorithms
             var value = hashtable[open];
             return value.ToString() == close.ToString();
         }
+        public int Factoria(int x)
+        {
+            //set the base case
+            if (x <= 1) return x;
+            int numberNextToX = x - 1;
+            return x * Factoria(numberNextToX);
+        }
+
+        public int TailFactoria(int x, int totalSoFar = 1)
+        {
+            //set the base case
+            if (x == 0) return totalSoFar;
+            int numberNextToX = x - 1;
+            return TailFactoria(numberNextToX, totalSoFar * x);
+        }
     }
 }

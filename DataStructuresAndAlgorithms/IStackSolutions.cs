@@ -10,5 +10,7 @@ namespace DataStructuresAndAlgorithms
     {
         bool ValidParentheses(string s);
         string MinimumBracketToRemove(string s);
+        int Factoria(int x);
+        int TailFactoria(int x, int totalSoFar = 1);
     }
 }

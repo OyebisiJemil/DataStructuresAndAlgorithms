@@ -44,5 +44,45 @@ namespace DataStructuresAndAlgorithmsTest
 
             Assert.Equal(expectedValue, totalTrappedWater);
         }
+
+        [Fact]
+        public void GetElement_WithTestCase_Runs()
+        {
+            int[] elements = { 1, 2, 3, 4, 4, 5 };
+
+            var actualResult = _arraySolutions.GetElement(elements, 3);
+
+            Assert.Equal(2, actualResult);
+        }
+
+        [Fact]
+        public void BinarySearch_WithTestCase_Runs()
+        {
+            int[] elements = { 1, 2, 3, 4, 5, 6, 7};
+
+            var actualResult = _arraySolutions.BinarySearch(elements, 3);
+
+            Assert.Equal(2, actualResult);
+        }
+
+        [Fact]
+        public void SearchRange_WithTestCase_Runs()
+        {
+            int[] elements = { 1, 3, 3, 5, 5, 5, 8, 9 };
+
+            var actualResult = _arraySolutions.SearchRange(elements,8);
+
+            //Assert.Equal(2, actualResult);
+        }
+
+        [Fact]
+        public void SearchRangeLinear_WithTestCase_Runs()
+        {
+            int[] elements = { 1, 3, 5, 5, 5, 5, 28, 37, 42 };
+
+            var actualResult = _arraySolutions.SearchRangeLinear(elements, 5);
+
+            //Assert.Equal(2, actualResult);
+        }
     }
 }
