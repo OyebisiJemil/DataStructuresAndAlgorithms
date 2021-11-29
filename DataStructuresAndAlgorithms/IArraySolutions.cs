@@ -11,5 +11,9 @@ namespace DataStructuresAndAlgorithms
         int GetMaximumWaterContainer(int[] heights);
         int GetTrappedRainWater(int[] heights);
         int GetTrappedRainWaterOptimized(int[] height);
+        int GetElement(int[] elements, int k);
+        int BinarySearch(int[] elements, int elementToSearch);
+        int[] SearchRange(int[] nums, int target);
+        int[] SearchRangeLinear(int[] nums, int target);
     }
 }

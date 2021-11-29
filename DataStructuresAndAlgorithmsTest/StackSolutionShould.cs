@@ -32,5 +32,26 @@ namespace DataStructuresAndAlgorithmsTest
 
             Assert.Equal(expectedResult, actualResult);
         }
+
+        [Theory]
+        [InlineData((4))]
+        public void Factoria_GivenX_ReturnsResult(int x)
+        {
+            int expectedResult = 24;
+            var actualResult = _stackSolutions.Factoria(x);
+
+            Assert.Equal(expectedResult, actualResult);
+        }
+
+        [Theory]
+        [InlineData((4))]
+        public void TailFactoria_GivenX_ReturnsResult(int x)
+        {
+            int expectedResult = 24;
+            int totalResultSoFar = 1;
+            var actualResult = _stackSolutions.TailFactoria(x, totalResultSoFar = 1);
+
+            Assert.Equal(expectedResult, actualResult);
+        }
     }
 }

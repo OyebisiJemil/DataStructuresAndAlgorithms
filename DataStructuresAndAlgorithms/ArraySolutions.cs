@@ -97,5 +97,121 @@ namespace DataStructuresAndAlgorithms
             }
             return totalTrappedinWater;
         }
+        public int GetElement(int[] elements, int element)
+        {
+            int left = 0;
+            int right = elements.Length-1;
+
+            while(left < right)
+            {
+                if (elements[left] == element)
+                    return left;
+                else
+                    if (elements[right] == element)
+                    return right;
+                left++;
+                right--;
+            }
+
+            return 0;
+        }
+
+        public int BinarySearch(int[] elements, int elementToSearch)
+        {
+            int leftPointer = 0;
+            int rightPointer = elements.Length - 1;
+            int middlePointer = (leftPointer + rightPointer) / 2;
+            int result = 0;
+
+            while(leftPointer <= rightPointer)
+            {
+                if (elements[middlePointer] == elementToSearch)
+                    return middlePointer;
+                else if(elementToSearch < elements[middlePointer])
+                    rightPointer = middlePointer - 1;
+                else
+                    leftPointer = middlePointer + 1;
+
+                middlePointer = (leftPointer + rightPointer) / 2;
+            }
+            return result;
+        }
+
+        public int[] SearchRange(int[] nums, int target)
+        {
+            int[] result = { -1, -1 };
+            if (nums.Length == 0) return result;
+
+            int firstPosition = TheBinarySearch(nums, 0, nums.Length - 1, target);
+
+            if (firstPosition == -1) return result;
+
+            int startPosition = firstPosition;
+            int endPosition = firstPosition;
+            int temp1 = 0;
+            int temp2 = 0;
+
+            while(startPosition != -1)
+            {
+                temp1 = startPosition;
+                startPosition = TheBinarySearch(nums, 0, startPosition - 1, target);
+            }
+
+            startPosition = temp1;
+
+            while(endPosition != -1)
+            {
+                temp2 = endPosition;
+                endPosition = TheBinarySearch(nums, endPosition + 1, nums.Length - 1, target);
+            }
+            endPosition = temp2;
+
+            result[0] = startPosition;
+            result[1] = endPosition;
+
+            return result;
+        }
+
+        private int TheBinarySearch(int[] nums, int leftPointer, int rightPointer, int target)
+        {
+            leftPointer = 0;
+            rightPointer = nums.Length - 1;
+            int middlePointer = (leftPointer + rightPointer) / 2;
+            int result = 0;
+
+            while (leftPointer <= rightPointer)
+            {
+                if (nums[middlePointer] == target)
+                    return middlePointer;
+                else if (target < nums[middlePointer])
+                    rightPointer = middlePointer - 1;
+                else
+                    leftPointer = middlePointer + 1;
+
+                middlePointer = (leftPointer + rightPointer) / 2;
+
+            }
+            return result;
+        }
+
+        public int[] SearchRangeLinear(int[] nums, int target)
+        {
+            int lowerBound = -1;
+            int upperBound = -1;
+
+            for(int pointer = 0; pointer<nums.Length; pointer++)
+            {
+                if(nums[pointer] == target)
+                {
+                    if(lowerBound == -1)
+                    {
+                        lowerBound = pointer;
+                    }
+                    upperBound = pointer;
+                }
+            }
+
+            return new int[] { lowerBound, upperBound };
+        }
     }
 }
