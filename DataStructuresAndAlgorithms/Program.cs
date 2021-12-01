@@ -11,11 +11,13 @@ namespace DataStructuresAndAlgorithms
         static void Main(string[] args)
         {
             ITreeSolutions _treeSolutions = new TreeSolutions();
-            TreeNode rootNode = new TreeNode(3);
-            rootNode.LeftNode = new TreeNode(9);
+            TreeNode rootNode = new TreeNode(9);
+            rootNode.LeftNode = new TreeNode(4);
             rootNode.RightNode = new TreeNode(20);
+            rootNode.LeftNode.LeftNode = new TreeNode(1);
+            rootNode.LeftNode.RightNode = new TreeNode(6);
             rootNode.RightNode.LeftNode = new TreeNode(15);
-            rootNode.RightNode.RightNode = new TreeNode(7);
+            rootNode.RightNode.RightNode = new TreeNode(170);
             //rootNode.LeftNode.LeftNode.LeftNode = new TreeNode(20);
             //rootNode.LeftNode.LeftNode.RightNode = new TreeNode(34);
             //rootNode.LeftNode.LeftNode.LeftNode.LeftNode = new TreeNode(10);
@@ -36,10 +38,17 @@ namespace DataStructuresAndAlgorithms
 
             //Console.WriteLine();
 
-            _treeSolutions.DepthFirstSearchPostOrder(rootNode);
-            int counter = 0;
-            int result = _treeSolutions.MaximumDepthOfBinaryTree(rootNode, counter);
-            int anotherResult = result;
+            //_treeSolutions.DepthFirstSearchPostOrder(rootNode);
+            //int counter = 0;
+            //int result = _treeSolutions.MaximumDepthOfBinaryTree(rootNode, counter);
+            //int anotherResult = result;
+
+            var result = _treeSolutions.BreadthFirstSearch(rootNode);
+
+            for(int pointer = 0; pointer<result.Count; pointer++)
+            {
+                Console.Write(result[pointer] +",");
+            }
 
             Console.ReadKey();
         }

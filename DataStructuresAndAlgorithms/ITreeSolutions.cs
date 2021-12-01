@@ -12,5 +12,6 @@ namespace DataStructuresAndAlgorithms
         void DepthFirstSearchInOrder(TreeNode root);
         void DepthFirstSearchPostOrder(TreeNode root);
         int MaximumDepthOfBinaryTree(TreeNode root, int currentDepth);
+        IList<int> BreadthFirstSearch(TreeNode root);
     }
 }

@@ -83,5 +83,24 @@ namespace DataStructuresAndAlgorithms
 
             return Math.Max(currentLeftDepth, currentRightDepth);
         }
+
+        public IList<int> BreadthFirstSearch(TreeNode root)
+        {
+            List<int> result = new List<int>();
+            Queue<TreeNode> queue = new Queue<TreeNode>();
+            queue.Enqueue(root);
+
+            while(queue.Count > 0)
+            {
+                var currentNode = queue.Dequeue();
+                result.Add(currentNode.Value);
+
+                if(currentNode.LeftNode != null) queue.Enqueue(currentNode.LeftNode);
+
+                if (currentNode.RightNode != null) queue.Enqueue(currentNode.RightNode);
+            }
+
+            return result;
+        }
     }
 }
