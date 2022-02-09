@@ -69,5 +69,55 @@ namespace DataStructuresAndAlgorithms
             }
             return averages;
         }
+
+
+        /// <summary>
+        /// Given array a = [2, 1, 5, 1, 3, 2] and  k=3
+        /// find: maximum sum of the any contiguous subarray of size k
+        /// </summary>
+        /// <param name="elements"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public int MaximumSumSubArraySizeKBruteForce(int[] elements, int k)
+        {
+            int maximum = 0;
+            for(int i = 0; i<elements.Length - k; i++)
+            {
+                int sum = 0;
+                for(int j = i;  j <= i+(k-1); j++)
+                {
+                    sum += elements[j];
+                }
+
+                maximum = Math.Max(maximum, sum);
+            }
+            return maximum;
+        }
+
+        /// <summary>
+        /// Given array a = [2, 1, 5, 1, 3, 2] and  k=3
+        /// find: maximum sum of the any contiguous subarray of size k
+        /// </summary>
+        /// <param name="elements"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public int MaximumSumSubArraySizeKOptimized(int[] elements, int k)
+        {
+            int maximum = 0;
+            int sum = 0;
+            int begining_of_window = 0;
+            for(int i = 0; i < elements.Length; i++)
+            {
+                sum += elements[i];
+                if(i >= k - 1)
+                {
+                    maximum = Math.Max(maximum, sum);
+                    sum -= elements[begining_of_window];
+
+                    begining_of_window++;
+                }
+            }
+            return maximum;
+        }
     }
 }

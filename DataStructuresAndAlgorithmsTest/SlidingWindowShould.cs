@@ -46,5 +46,29 @@ namespace DataStructuresAndAlgorithmsTest
                 item => Assert.Equal(3.6, item),
                 item => Assert.Equal(2.8, item));
         }
+
+        [Theory]
+        [InlineData(new int[] {2, 1, 5, 1, 3, 2}, 3)]
+        public void MaximumSumSubArraySizeKBruteForce(int[] elements, int k)
+        {
+            int expectedResult1 = 9;
+
+            int result1 = _slidingWindow.MaximumSumSubArraySizeKBruteForce(elements, k);
+
+            Assert.Equal(expectedResult1, result1);
+        }
+
+        [Theory]
+        [InlineData(new int[] { 2, 1, 5, 1, 3, 2 }, 3)]
+        public void MaximumSumSubArraySizeKOptimized(int[] elements, int k)
+        {
+            int expectedResult1 = 9;
+
+            int result1 = _slidingWindow.MaximumSumSubArraySizeKOptimized(elements, k);
+
+            Assert.Equal(expectedResult1, result1);
+        }
+
+
     }
 }
