@@ -15,5 +15,7 @@ namespace DataStructuresAndAlgorithms
         int BinarySearch(int[] elements, int elementToSearch);
         int[] SearchRange(int[] nums, int target);
         int[] SearchRangeLinear(int[] nums, int target);
+        int KthLargestEelement(int[] elements, int k);
+        int[] GetStartAndEndOfTarget(int[] elements, int target);
     }
 }
