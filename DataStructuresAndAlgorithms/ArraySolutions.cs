@@ -213,5 +213,70 @@ namespace DataStructuresAndAlgorithms
 
             return new int[] { lowerBound, upperBound };
         }
+
+        public int KthLargestEelement(int[] elements, int k)
+        {
+            int indexToFind = elements.Length - k;
+            QuickSort(elements, 0, elements.Length - 1);
+            return elements[indexToFind];
+        }
+
+        void QuickSort(int[] elements, int left, int right)
+        {
+            if(left < right)
+            {
+                int partitionIndex = Partition(elements, left, right);
+                QuickSort(elements, left, partitionIndex - 1);
+                QuickSort(elements, partitionIndex + 1, right);
+            }
+        }
+
+        int Partition(int[] elements, int left, int right)
+        {
+            int i = left;
+            int pivot = right;
+            int pivotEelement = elements[pivot];
+
+            for(int j = left; j<elements.Length; j++)
+            {
+                if(elements[j] < pivotEelement)
+                {
+                    Swap(elements, i, j);
+                    i++;
+                }
+            }
+            Swap(elements, i, pivot);
+            return i;
+        }
+
+        void Swap(int[] elements, int i, int j)
+        {
+            int temp = elements[i];
+            elements[i] = elements[j];
+            elements[j] = temp;
+        }
+
+        public int[] GetStartAndEndOfTarget(int[] elements, int target)
+        {
+            int[] output = { -1, -1 };
+
+            for(int pointer = 0; pointer<elements.Length; pointer++)
+            {
+                if(elements[pointer] == target)
+                {
+                    if(output[0] == -1)
+                    {
+                        output[0] = pointer;
+                        output[1] = pointer;
+                    }
+                    else
+                    {
+                        output[1] = pointer;
+                    }
+                }
+            }
+
+            return output;
+        }
     }
 }

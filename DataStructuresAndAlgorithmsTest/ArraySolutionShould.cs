@@ -84,5 +84,27 @@ namespace DataStructuresAndAlgorithmsTest
 
             //Assert.Equal(2, actualResult);
         }
+
+        [Fact]
+        public void KthLargestEelement_Returns_Result()
+        {
+            int[] elements = { 3,7,2,8,1,9,4,5,6 };
+            int expectedResult = 6;
+
+            var actualResult = _arraySolutions.KthLargestEelement(elements, 4);
+
+            Assert.Equal(expectedResult, actualResult);
+        }
+
+        [Fact]
+        public void GetStartAndEndOfTarget_Returns_Result()
+        {
+            int[] elements = { 1,3,3,5,5,5,8,9 };
+            //int expectedResult = 5;
+
+            var actualResult = _arraySolutions.GetStartAndEndOfTarget(elements, 5);
+
+           // Assert.Equal(expectedResult, actualResult);
+        }
     }
 }
