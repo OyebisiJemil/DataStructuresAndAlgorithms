@@ -25,5 +25,23 @@ namespace DataStructuresAndAlgorithms
         /// <param name="elements"></param>
         /// <returns></returns>
         List<double> AverageOfAllSubArrayBruteForce(int[] elements, int k);
+
+        /// <summary>
+        /// Given an array of elements, this method finds the maximum sum of any contiguous
+        /// subarray of size k using bruteforce abroach and this gives us O(n*k) time complexity
+        /// </summary>
+        /// <param name="elements"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        int MaximumSumSubArraySizeKBruteForce(int[] elements, int k);
+
+        /// <summary>
+        /// Given an array of elements, this method finds the maximum sum of any contiguous
+        /// subarray of size k with an optimized aproach and this gives us O(n) time complexity
+        /// </summary>
+        /// <param name="elements"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        int MaximumSumSubArraySizeKOptimized(int[] elements, int k);
     }
 }
