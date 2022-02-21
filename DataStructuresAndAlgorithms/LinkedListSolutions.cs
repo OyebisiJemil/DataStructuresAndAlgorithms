@@ -8,6 +8,8 @@ namespace DataStructuresAndAlgorithms
 {
     public class LinkedListSolutions:ILinkedListSolutions
     {
+       
+
         /// <summary>
         /// Given a head node of a sorted linked list, this algorithm removes duplicate from the linked list by 
         /// comparing the neighboring nodes
@@ -199,7 +201,7 @@ namespace DataStructuresAndAlgorithms
 
             return prev;
         }
-       public Node ReverseBetween(Node head, int left, int right)
+        public Node ReverseBetween(Node head, int left, int right)
         {
             Node currentNode = head;
             int position = 1;
@@ -231,5 +233,6 @@ namespace DataStructuresAndAlgorithms
             else
                 return newList;
         }
+    
     }
 }

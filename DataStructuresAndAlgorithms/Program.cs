@@ -10,11 +10,135 @@ namespace DataStructuresAndAlgorithms
     {
         static void Main(string[] args)
         {
-            int[] arrayA = { 1, 3, 2, 6,-1, 4, 1, 8, 2 };
+            List<int> first = new List<int>() { 100000, 0, 99999, 3, 4, 100000, 0 };
 
-            List<double> result = OptimizedAverageSubArray(arrayA, 5);
+            var res = find_top_k_frequent_elements(first, 2);
+
 
             Console.ReadKey();
+        }
+
+
+
+        public static List<int> find_top_k_frequent_elements(List<int> arr, int k)
+        {
+            // Write your code here.
+            int x = 0;
+            Dictionary<int, int> lookup = new Dictionary<int, int>();
+
+            for (int i = 0; i < arr.Count; i++)
+            {
+                int sum = 0;
+                int item = arr[i];
+
+                if (!lookup.ContainsKey(item))
+                {
+                    for (int j = 0; j < arr.Count; j++)
+                    {
+                        if (arr[j] == item)
+                            sum++;
+                    }
+                }
+
+                if (sum >= x)
+                {
+                    lookup.Add(item, sum);
+                    x = sum;
+                }
+            }
+
+            List<int> output = new List<int>();
+            foreach (var item in lookup)
+            {
+                output.Add(item.Key);
+            }
+
+        
+            output.Reverse();
+            return output.Take(k).ToList(); ;
+        }
+
+
+        public static int can_attend_all_meetings(List<List<int>> intervals)
+        {
+            // Write your code here.
+            for (int i = 0; i < intervals.Count - 1; i++)
+            {
+                List<int> firstMeeting = intervals[i];
+                List<int> secondMeeting = intervals[i + 1];
+
+                int firstEndTime = firstMeeting[1];
+                int secondBeginTime = secondMeeting[0];
+
+                if (firstEndTime > secondBeginTime)
+                    return 0;
+            }
+            return 1;
+        }
+
+        static Node TraverseLinkedList(Node node)
+        {
+            Node currentNode = new Node(int.MinValue);
+            Node head = currentNode;
+
+            while(!(node is null))
+            {
+                currentNode.next = node;
+                node = node.next;
+                currentNode = currentNode.next;
+            }
+            return head.next;
+            
+        }
+        static public Node MergeLinkedList(Node a, Node b)
+        {
+            if (a == null) return null;
+            Node node = new Node(int.MinValue);
+            Node head = node;
+           
+                while(a != null && b != null)
+                {
+                    if (a.value <= b.value)
+                    {
+                        node.next = a;
+                        a = a.next;
+                    }
+                    else
+                    {
+                        node.next = b;
+                        b = b.next;
+                    }
+                    node = node.next;
+                }
+                if(a != null)
+                {
+                    node.next = a;         
+                }
+                else if(b != null)
+                {
+                    node.next = b;
+                }
+                
+           
+            return head;
+        }
+        public static List<int> pair_sum_sorted_array(List<int> numbers, int target)
+        {
+            // Write your code here.
+
+            if (numbers == null)
+                return new List<int>() { -1, -1 };
+
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                int compliment = target - numbers[i];
+                for (int j = i+1; j < numbers.Count; j++)
+                {
+                    if (numbers[j] == compliment)
+                        return new List<int>() { i, j };
+                }
+            }
+            return new List<int>() { -1, -1 };
         }
 
         public static IList<IList<int>> ZigzagLevelOrder(TreeNode root)
@@ -311,6 +435,238 @@ namespace DataStructuresAndAlgorithms
                
             }
             return output;
+        }
+
+        public static List<int> merge_sort(List<int> arr)
+        {
+            // Write your code here.
+            var result = Helper(arr);
+            return result;
+        }
+
+        static List<int> Helper(List<int> items)
+        {
+            if (items.Count <= 1)
+                return items;
+
+            List<int> leftResult = new List<int>();
+            List<int> rightResult = new List<int>();
+
+            int middle = items.Count / 2;
+
+            leftResult = GetLeftPartition(items, middle);
+            rightResult = GetRightPartition(items, middle);
+
+            leftResult = Helper(leftResult);
+            rightResult = Helper(rightResult);
+
+            return MyArrayMerge(leftResult.ToArray(), rightResult.ToArray());
+        }
+
+        static List<int> GetLeftPartition(List<int> items, int middle)
+        {
+            List<int> result = new List<int>();
+            for (int i = 0; i < middle; i++)
+            {
+                result.Add(items[i]);
+            }
+            return result;
+        }
+
+        static List<int> GetRightPartition(List<int> items,int middle)
+        {
+            List<int> result = new List<int>();
+            for (int i = middle; i < items.Count; i++)
+            {
+                result.Add(items[i]);
+            }
+            return result;
+        }
+
+        static List<int> MyArrayMerge(int[] a, int[] b)
+        {
+            List<int> aux = new List<int>();
+            int left = 0;
+            int right = 0;
+            while(left <= a.Length-1 && right <= b.Length-1)
+            {
+                if(a[left] < b[right])
+                {
+                    aux.Add(a[left]);
+                    left++;
+                }
+                else
+                {
+                    aux.Add(b[right]);
+                    right++;
+                }
+            }
+            return aux.ToList();
+        }
+        static List<int> MyMerge(List<int> a, List<int> b)
+        {
+            List<int> aux = new List<int>();
+            while(a.Count > 0 || b.Count > 0)
+            {
+                if(a.Count > 0 && b.Count > 0)
+                {
+                    if (a[0] < b[0])
+                    {
+                        aux.Add(a[0]);
+                        a.RemoveAt(0);
+                    }
+                    else
+                    {
+                        aux.Add(b[0]);
+                        b.RemoveAt(0);
+                    }
+                }
+                else if(a.Count > 0)
+                {
+                    aux.Add(a[0]);
+                    a.RemoveAt(0);
+                }
+                else
+                {
+                    aux.Add(b[0]);
+                    b.RemoveAt(0);
+                }
+            }
+
+            return aux;
+        }
+        private static List<int> merge(List<int> leftResult, List<int> rightResult)
+        {
+            List<int> auxiliarySpace = new List<int>();
+
+            while (leftResult.Count > 0 || rightResult.Count > 0)
+            {
+                if (leftResult.Count > 0 && rightResult.Count > 0)
+                {
+                    if (leftResult[0] <= rightResult[0])  
+                    {
+                        auxiliarySpace.Add(leftResult[0]);
+                        leftResult.Remove(leftResult[0]);  
+                    }
+                    else
+                    {
+                        auxiliarySpace.Add(rightResult[0]);
+                        rightResult.Remove(rightResult[0]);
+                    }
+                }
+                else if (leftResult.Count > 0)
+                {
+                    auxiliarySpace.Add(leftResult[0]);
+                    leftResult.Remove(leftResult[0]);
+                }
+                else if (rightResult.Count > 0)
+                {
+                    auxiliarySpace.Add(rightResult[0]);
+
+                    rightResult.Remove(rightResult[0]);
+                }
+            }
+            return auxiliarySpace;
+        }
+        
+        private static List<int> ThisMerge(List<int> first, List<int> second)
+        {
+            List<int> aux = new List<int>();
+            int middle = second.Count / 2;
+
+            while(first.Count > 0 && second.Count > 0)
+            {
+                if(first[0] <= second[0])
+                {
+                    aux.Add(first[0]);
+                    first.RemoveAt(0);
+                }
+                else
+                {
+                    aux.Add(second[0]);
+                    second.RemoveAt(0);
+                }
+            }
+            if(second.Count > middle)
+            {
+                aux.Add(second[0]);
+                second.RemoveAt(0);
+            }
+            return aux;
+        }
+        private static List<int> ThisMergeArray(int[] first, int[] second)
+        {
+            List<int> aux = new List<int>();
+            int left = 0;
+            int right = 0;
+            int middle = second.Length / 2;
+
+            while (left < first.Length || right < middle)
+            {
+                if(left < first.Length && right < middle)
+                {
+                    if (first[left] <= second[right])
+                    {
+                        aux.Add(first[left]);
+                        left++;
+                    }
+                    else
+                    {
+                        aux.Add(second[right]);
+                        right++;
+                    }
+                }
+                else if(right < middle)
+                {
+                    aux.Add(second[right]);
+                    right++;
+                }
+                else if(left < first.Length)
+                {
+                    aux.Add(first[left]);
+                    left++;
+                }
+                
+            }
+            return aux;
+        }
+
+
+        public static List<char> dutch_flag_sort(List<char> balls)
+        {
+            // Write your code here.
+            char red = 'R';
+            char green = 'G';
+            int g = 0;
+            int b = 0;
+
+            for (int i = 0; i < balls.Count; i++)
+            {
+                if (balls[i] == red)
+                {
+                    Swap(balls, g, i);
+                    g++;
+                }
+            }
+
+            b = g;
+
+            for (int i = 0; i < balls.Count; i++)
+            {
+                if (balls[i] == green)
+                {
+                    Swap(balls, b, i);
+                    b++;
+                }
+            }
+            return balls;
+        }
+
+        static void Swap(List<char> balls, int left, int right)
+        {
+            char temp = balls[left];
+            balls[left] = balls[right];
+            balls[right] = temp;
         }
     }
 }

@@ -119,5 +119,34 @@ namespace DataStructuresAndAlgorithms
             }
             return maximum;
         }
+
+        public int SmallestSubarrayWithGreaterSum(int[] elements, int s)
+        {
+
+            int smallestSubArrayLength = 1;
+            int sum = 0;
+            int window_start = 0;
+
+            while(smallestSubArrayLength != elements.Length)
+            {
+                for(int i = 0; i< elements.Length; i++)
+                {
+                    sum = sum + elements[i];
+                    if(i >= (smallestSubArrayLength - 1))
+                    {
+                        if (sum >= s)
+                            return smallestSubArrayLength;
+                        else
+                        {
+                            sum = sum - elements[window_start];
+                            window_start++;
+                        }
+                    }
+                }
+                smallestSubArrayLength++;
+                window_start = 0;
+            }
+            return smallestSubArrayLength - 1;
+        }
     }
 }

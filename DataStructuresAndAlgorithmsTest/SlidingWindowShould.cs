@@ -69,6 +69,16 @@ namespace DataStructuresAndAlgorithmsTest
             Assert.Equal(expectedResult1, result1);
         }
 
+        [Theory]
+        [InlineData(new int[] { 3, 4, 1, 1, 6 }, 8)]
+        public void SmallestSubarrayWithGreaterSum(int[] elements, int s)
+        {
+            int expectedResult = 3;
+
+            int result = _slidingWindow.SmallestSubarrayWithGreaterSum(elements, s);
+
+            Assert.Equal(expectedResult, result);
+        }
 
     }
 }

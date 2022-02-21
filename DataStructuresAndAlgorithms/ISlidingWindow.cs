@@ -43,5 +43,14 @@ namespace DataStructuresAndAlgorithms
         /// <param name="k"></param>
         /// <returns></returns>
         int MaximumSumSubArraySizeKOptimized(int[] elements, int k);
+
+        /// <summary>
+        /// Given an array of elements and a positive number S, this method finds the length
+        /// of the smallest contiguous subarray whose sum is greater than or equal to S
+        /// </summary>
+        /// <param name="elements"></param>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        int SmallestSubarrayWithGreaterSum(int[] elements, int s);
     }
 }
